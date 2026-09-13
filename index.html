@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personalized Price Disclosure Card — FTC proposed 3-part checklist · comments due Sep 25 2026</title>
+  <meta name="description" content="Paste merchant type + what checkout said + view date. Get one shareable card: FTC proposed three-part personalized-price disclosure checklist, specially-selected ≠ enough chip, days left to Sep 25 2026 comment deadline. Cite FTC. Not legal advice. Proposed — not a final rule.">
+  <meta name="theme-color" content="#0b0f14">
+  <meta property="og:title" content="Personalized Price Disclosure Card">
+  <meta property="og:description" content="Paste what checkout said — does it clear the FTC’s proposed 3-part personalized pricing checklist? Comments due Sep 25 2026. Not legal advice.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">3/3</div>
+        <div>
+          <h1>Personalized Price Disclosure Card</h1>
+          <p class="tagline">Paste what checkout said → FTC proposed triad checklist · Sep 25 comment clock · share card.</p>
+        </div>
+      </div>
+      <span class="badge">Proposed · not legal advice</span>
+    </header>
+
+    <aside class="myth-banner" role="note">
+      <strong>Legal disclaimer.</strong>
+      This card is <em>proposed-policy literacy</em> — <strong>not</strong> legal advice, <strong>not</strong> a price scraper, <strong>not</strong> a VPN “beat the algorithm” tool, and <strong>not</strong> a claim that any named merchant violated Section&nbsp;5.
+      On Aug&nbsp;19,&nbsp;2026 the FTC proposed an Enforcement Policy Statement on personalized pricing: where consumers reasonably expect non-personalized prices, businesses “should clearly and conspicuously disclose” (1)&nbsp;that the price is personalized, (2)&nbsp;the basis for personalization, and (3)&nbsp;the types of data used. Calling a price “specially selected” alone is called likely misleading.
+      Comment period extended Sep&nbsp;3,&nbsp;2026 — <strong>deadline September&nbsp;25,&nbsp;2026</strong>. This is a <strong>proposed</strong> statement, <strong>not a final rule</strong>. The FTC does not claim authority to ban personalized pricing outright.
+      Sources:
+      <a href="https://www.ftc.gov/system/files/ftc_gov/pdf/p034101-ftc-enforcement-policy-statement-re-personalized-pricing-proposed-for-public-comment.pdf" target="_blank" rel="noopener noreferrer">FTC Aug 19 2026 proposed statement (PDF)</a>
+      ·
+      <a href="https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-extends-public-comment-proposed-policy-statement-regarding-personalized-pricing" target="_blank" rel="noopener noreferrer">FTC Sep 3 2026 press · Sep 25 deadline</a>
+      ·
+      <a href="https://www.ftc.gov/legal-library/browse/federal-trade-commissions-proposed-enforcement-policy-statement-regarding-personalized-pricing" target="_blank" rel="noopener noreferrer">FTC legal-library landing</a>
+      ·
+      <a href="https://www.regulations.gov/" target="_blank" rel="noopener noreferrer">regulations.gov</a>
+      ·
+      <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener noreferrer">ReportFraud.ftc.gov</a>.
+      We never invent your “true” price or allege a Section&nbsp;5 violation.
+    </aside>
+
+    <section class="panel lookup" aria-labelledby="lookup-heading">
+      <h2 id="lookup-heading">1. Paste merchant + what the UI said</h2>
+      <p class="hint">
+        Merchant-type chip, what the checkout / UI disclosed (or didn’t), and the date you’re looking.
+        Score is checklist completeness from <strong>your chips</strong> vs the FTC’s proposed three-part triad — never a scraped price or a legal verdict.
+      </p>
+
+      <div class="field-grid four">
+        <div>
+          <label for="merchant">Merchant type</label>
+          <select id="merchant">
+            <option value="hotel">Hotel</option>
+            <option value="food_delivery">Food delivery</option>
+            <option value="grocery_delivery">Grocery delivery</option>
+            <option value="rideshare">Rideshare</option>
+            <option value="retail">Retail</option>
+            <option value="other">Other / unspecified</option>
+          </select>
+        </div>
+        <div>
+          <label for="disclosure">What checkout / UI said</label>
+          <select id="disclosure">
+            <option value="unsure">Unsure / didn’t notice</option>
+            <option value="none">No disclosure</option>
+            <option value="specially_selected">“Specially selected” only</option>
+            <option value="personalized_no_basis">“Personalized” without basis / data types</option>
+            <option value="full">Full triad: personalized + basis + data types</option>
+          </select>
+        </div>
+        <div>
+          <label for="viewDate">View date (when you’re looking)</label>
+          <input id="viewDate" type="date" required />
+        </div>
+        <div>
+          <label for="noteLabel">Note label (optional)</label>
+          <input id="noteLabel" type="text" maxlength="64" placeholder="e.g. Redacted · hotel screenshot" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="cardBtn">Show disclosure card</button>
+        <button type="button" class="btn" id="clearBtn">Clear</button>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+
+      <h3 class="subhead">Seed examples (teaching receipts — not live merchant scrapes)</h3>
+      <div class="seed-chips" id="seedChips" role="list" aria-label="Seed personalized-price disclosure examples"></div>
+    </section>
+
+    <section class="panel card-panel" aria-labelledby="card-heading" id="cardSection" hidden>
+      <div class="card-toolbar">
+        <h2 id="card-heading">2. Shareable disclosure card</h2>
+        <div class="actions">
+          <button type="button" class="btn" id="copySummary">Copy summary</button>
+          <button type="button" class="btn" id="shareBtn">Share link</button>
+          <button type="button" class="btn" id="pngBtn">Export PNG</button>
+        </div>
+      </div>
+
+      <!-- PRIMARY VISUAL: checklist completeness badge + days-to-Sep-25 + specially-selected strip -->
+      <article class="renewal-card" id="disclosureCard" aria-labelledby="dlHeadline">
+        <header class="card-head">
+          <div>
+            <p class="brand-line">Personalized Price Disclosure Card</p>
+            <p class="meta-line" id="cardMeta">—</p>
+            <h3 id="dlHeadline">Disclosure checklist?</h3>
+          </div>
+          <div class="verdict" id="statusBadge">
+            <span class="verdict-k" id="statusPill">—</span>
+            <span class="verdict-s" id="statusSub">Proposed policy · not a final rule</span>
+          </div>
+        </header>
+
+        <div class="hero-row">
+          <div class="hero-stat cy-lead">
+            <span class="hero-kicker">FTC proposed triad completeness</span>
+            <div class="face-allin-line" aria-label="Checklist score badge">
+              <span class="hero-value" id="scoreDisp">—</span>
+              <span class="face-arrow" aria-hidden="true">·</span>
+              <span class="face-was"><span class="face-was-k">Countdown</span> <span id="daysDisp">—</span></span>
+            </div>
+            <span class="hero-sub" id="deadlineLine">Comments due Sep 25 2026</span>
+          </div>
+          <div class="hero-stat fee ring-stat">
+            <span class="hero-kicker">Days-left badge</span>
+            <div class="ring-wrap" aria-hidden="true">
+              <div class="fee-ring" id="daysRing" style="--pct:0"></div>
+              <div class="ring-center">
+                <span class="hero-value" id="daysRingDisp">—</span>
+              </div>
+            </div>
+            <span class="hero-sub" id="windowLine">—</span>
+          </div>
+        </div>
+
+        <p class="look-enroll-flag" id="actionFlag" aria-live="polite">—</p>
+
+        <div class="checklist-strip" id="checklistStrip" aria-label="FTC proposed three-part disclosure checklist">
+          <p class="checklist-title">Proposed disclosure checklist (FTC Aug 19 2026)</p>
+          <ul class="checklist" id="checklistItems">
+            <li id="check1">—</li>
+            <li id="check2">—</li>
+            <li id="check3">—</li>
+          </ul>
+        </div>
+
+        <div class="receipt-strip four" id="receiptStrip" aria-label="Paste breakdown">
+          <div class="r-item"><span class="r-k">Merchant</span><span class="r-v" id="rMerchant">—</span></div>
+          <div class="r-item"><span class="r-k">UI said</span><span class="r-v" id="rDisclosure">—</span></div>
+          <div class="r-item"><span class="r-k">Comments due</span><span class="r-v" id="rDeadline">Sep 25 2026</span></div>
+          <div class="r-item"><span class="r-k">Policy status</span><span class="r-v" id="rPolicy">Proposed · not final</span></div>
+        </div>
+
+        <p class="decoder-line" id="decoderLine">—</p>
+        <p class="action-line" id="actionLine">—</p>
+        <p class="cite-line" id="citeLine">—</p>
+
+        <footer class="card-foot">
+          <span>User-pasted chips · no scrape · no “true” price</span>
+          <span>Not legal advice · proposed · not a final rule</span>
+        </footer>
+      </article>
+
+      <div class="share-box" id="shareBox" hidden>
+        <label for="shareUrl">Share URL (hash restores your pasted chips)</label>
+        <div class="row">
+          <input id="shareUrl" type="text" readonly />
+          <button type="button" class="btn" id="copyShare" style="flex:0 0 auto">Copy</button>
+        </div>
+        <p class="hint">Append UTM when you post, e.g. <code>?utm_source=reddit&amp;utm_medium=organic&amp;utm_campaign=personalized_price_disclosure_mvp</code></p>
+      </div>
+
+      <div class="source-links" id="sourceLinks"></div>
+    </section>
+
+    <section class="panel legend" aria-labelledby="legend-heading">
+      <h2 id="legend-heading">How to read the card</h2>
+      <ul class="legend-list">
+        <li><span class="pill allin">Score · n/3</span> Completeness vs the FTC’s <strong>proposed</strong> triad from <strong>your disclosure chip</strong> only: personalized · basis · data types. Text badge required; color is secondary. Never invents a merchant’s Section&nbsp;5 status.</li>
+        <li><span class="pill fee">Days left</span> Countdown from <strong>your view date</strong> to the public comment deadline: <strong>Sep&nbsp;25&nbsp;2026</strong>. After that day: CLOSED (literacy mode).</li>
+        <li><span class="pill claim">“Specially selected” ≠ enough</span> FTC proposed statement calls “specially selected” alone likely misleading. That chip scores <strong>0/3</strong> with an explicit incomplete strip.</li>
+        <li><strong>Proposed ≠ final.</strong> Share PNG and card face always say proposed / not a final rule. We do not predict enforcement outcomes.</li>
+        <li><strong>Action line</strong> Points only to ftc.gov / regulations.gov comment path (while open) and ReportFraud.ftc.gov for scams — never a VPN affiliate or “beat personalized pricing” funnel.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <strong>Personalized Price Disclosure Card</strong> — disclosure-honest share card for the FTC’s proposed personalized-pricing policy + Sep 25 2026 comment cliff.
+      <ul>
+        <li>Merchant · UI disclosure chip · view date → n/3 checklist + Sep 25 countdown</li>
+        <li>User paste only · labeled seeds · no scrape · not legal advice · proposed ≠ final</li>
+        <li>Free utility · ad-supported path (see README)</li>
+      </ul>
+    </footer>
+    <canvas id="pngCanvas" width="900" height="1220" hidden aria-hidden="true"></canvas>
+  </div>
+</body>
+</html>
